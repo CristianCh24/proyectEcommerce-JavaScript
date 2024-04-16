@@ -30,10 +30,17 @@ if (seleccion.toLowerCase() === "si") {
     while (true) {
         let producto = prompt("Agrega un producto a tu carrito:");
         producto = producto.toLowerCase();
-
+        
         if (productos.some((productoDisponible) => productoDisponible.nombre === producto)) {
             const precio = productos.find((productoDisponible) => productoDisponible.nombre === producto).precio;
-            const unidades = parseInt(prompt("¿Cuántas unidades quieres llevar?"));
+            // Validación de entrada de números.
+            let unidades;
+            do {
+                unidades = parseInt(prompt("¿Cuántas unidades quieres llevar?"));
+                if (isNaN(unidades)) {
+                    alert("Por favor, ingrese un número válido para las unidades.");
+                }
+            } while (isNaN(unidades));
 
             carrito.push({ producto, unidades, precio });
             console.log(carrito);
@@ -48,8 +55,18 @@ if (seleccion.toLowerCase() === "si") {
         } else {
             alert(`No tenemos el producto "${producto}"`);
         }
+
         // Se pregunta al usuario si desea seguir comprando.
         let seguirComprando = prompt("¿Desea seguir comprando? (si/no)");
+        while (seguirComprando.toLowerCase() !== "si" && seguirComprando.toLowerCase() !== "no") {
+            alert('Por favor, escribe "si" o "no".');
+            seguirComprando = prompt("¿Desea comprar algo? (si/no)");
+        }
+        // Se muestra la lista de productos en el carrito.
+        if (seguirComprando.toLowerCase() == "si") {
+            alert("Continuemos con su compra:" + "\n\n" + listaProductos.join(""));
+        }
+
         // Si el usuario elige NO y el carrito está vacío, se muestra el mensaje.
         if (seguirComprando.toLowerCase() !== "si" && carrito.length === 0) {
             alert("No hay problema, tal vez te confundiste. ¡Vuelve pronto!");
