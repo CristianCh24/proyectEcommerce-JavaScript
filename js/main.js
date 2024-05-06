@@ -1,3 +1,37 @@
+// Función para agregar productos al carrito:
+function agregarProductoAlCarrito(producto, unidades, precio) {
+    carrito.push({ producto, unidades, precio });
+    console.log(carrito);
+
+    let detalleProducto = `Producto agregado: ${producto}\n`;
+    detalleProducto += `Cantidad: ${unidades}\n`;
+    detalleProducto += `Precio unitario: $${precio}\n`;
+    detalleProducto += `Precio total: $${precio * unidades}\n`;
+    detalleProducto += "----------------------------\n";
+    alert(detalleProducto);
+}
+// Función para mostrar el resumen del carrito:
+function mostrarResumenCarrito() {
+    let resumenCarrito = "Resumen del carrito:\n\n";
+    carrito.forEach((productoCarrito) => {
+        resumenCarrito += `Producto: ${productoCarrito.producto}\n`;
+        resumenCarrito += `Cantidad: ${productoCarrito.unidades}\n`;
+        resumenCarrito += `Precio unitario: $${productoCarrito.precio}\n`;
+        resumenCarrito += `Subtotal: $${productoCarrito.precio * productoCarrito.unidades}\n`;
+        resumenCarrito += "----------------------------\n";
+    });
+    alert(resumenCarrito);
+}
+// Función para calcular el total de la compra:
+function calcularTotal() {
+    const total = carrito.reduce((acumulador, producto) => acumulador + producto.precio * producto.unidades, 0);
+    return total;
+}
+
+
+/////////////////CODIGO DEL SUPERMERCADO X-ONLINE/////////////////
+
+
 let nombreIngresado;
 // Se ingresa nombre de usuario obligatoriamente.
 do {
@@ -30,7 +64,7 @@ if (seleccion.toLowerCase() === "si") {
     while (true) {
         let producto = prompt("Agrega un producto a tu carrito:");
         producto = producto.toLowerCase();
-        
+
         if (productos.some((productoDisponible) => productoDisponible.nombre === producto)) {
             const precio = productos.find((productoDisponible) => productoDisponible.nombre === producto).precio;
             // Validación de entrada de números.
@@ -42,15 +76,7 @@ if (seleccion.toLowerCase() === "si") {
                 }
             } while (isNaN(unidades));
 
-            carrito.push({ producto, unidades, precio });
-            console.log(carrito);
-
-            let detalleProducto = `Producto agregado: ${producto}\n`;
-            detalleProducto += `Cantidad: ${unidades}\n`;
-            detalleProducto += `Precio unitario: $${precio}\n`;
-            detalleProducto += `Precio total: $${precio * unidades}\n`;
-            detalleProducto += "----------------------------\n";
-            alert(detalleProducto);
+            agregarProductoAlCarrito(producto, unidades, precio);
 
         } else {
             alert(`No tenemos el producto "${producto}"`);
@@ -82,19 +108,11 @@ if (seleccion.toLowerCase() === "si") {
 }
 // Si el carrito no está vacío, se muestra el resumen.
 if (carrito.length > 0) {
-    let resumenCarrito = "Resumen del carrito:\n\n";
-    carrito.forEach((productoCarrito) => {
-        resumenCarrito += `Producto: ${productoCarrito.producto}\n`;
-        resumenCarrito += `Cantidad: ${productoCarrito.unidades}\n`;
-        resumenCarrito += `Precio unitario: $${productoCarrito.precio}\n`;
-        resumenCarrito += `Subtotal: $${productoCarrito.precio * productoCarrito.unidades}\n`;
-        resumenCarrito += "----------------------------\n";
-    });
-    alert(resumenCarrito);
+    mostrarResumenCarrito();
 }
 // Se calcula el total y se muestra el mensaje de despedida.
 if (carrito.length > 0) {
-    const total = carrito.reduce((acumulador, producto) => acumulador + producto.precio * producto.unidades, 0);
+    const total = calcularTotal();
     let mensajeTotal = `El total a pagar por su compra es de: $${total}` + "\n";
     alert(mensajeTotal + "\n" + "¡Gracias por la compra!" + "\n" + "Hasta pronto" + " " + nombreIngresado + ".");
 }
