@@ -1,0 +1,51 @@
+/* Productos home*/
+#productos-container{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  justify-content: center;
+  background-color: #141212;
+  width: auto;
+  margin: 0 auto;
+  padding: 3rem;
+  border-top: 0.09rem solid rgba(117, 184, 1, 0.6235294118);
+  border-bottom: 0.09rem solid rgba(117, 184, 1, 0.6235294118);
+}
+
+.tarjeta-producto{
+  background-color: #020202;
+  padding: 1rem;
+  border-radius: 1.33rem;
+  color: #b2b6b2;
+  filter: grayscale(66%);
+  text-align: center;
+}
+
+.tarjeta-producto:hover{
+  box-shadow: 0 0 0.9rem #a2ff00;
+  filter: grayscale(0%);
+  transform: scale(1.066);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1;
+}
+
+.tarjeta-producto img{
+  height: 10rem;
+  width: 100%;
+  object-fit: scale-down;
+}
+
+.precio{
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+}
+
+.tarjeta-producto button{
+  font-size: larger;
+  background-color: rgb(26, 202, 44);
+  border-radius: 0.33rem;
+  padding: 0.3rem 0.6rem;
+  color: rgb(50, 30, 30);
+  border:unset;
+  cursor:pointer;
+}

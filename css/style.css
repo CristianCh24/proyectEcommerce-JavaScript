@@ -1,0 +1,99 @@
+::-webkit-scrollbar {
+  background-color: #020202;
+  width: 0.99rem;
+}
+
+::-webkit-scrollbar-track {
+  border-left: 1px solid rgba(117, 184, 1, 0.6235294118);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(117, 184, 1, 0.6235294118);
+}
+
+body{
+  margin: 0;
+  background-color: #020202;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+h3, p{
+  margin: 0.33rem;
+}
+
+.escondido{
+  display: none;
+}
+
+a{
+  background-color: unset;
+  border:unset;
+  cursor:pointer;
+  text-decoration: none;
+  transition: 200ms;
+  color: #3c563f;
+}
+
+button{
+  transition: 200ms;
+}
+
+a:hover:not(#cart), button:hover{
+  color: rgb(0, 255, 115);
+}
+
+/* Header */
+header{
+  margin-bottom: 3rem;
+  font-size: larger;
+  background-color: #141212;
+  border-bottom: solid 0.1rem rgb(0, 255, 115);
+}
+
+header nav{
+  display: flex;
+  justify-content: space-between;
+  margin: 0 60px;
+}
+
+#logo{
+  height: 2rem;
+  margin: 1rem;
+}
+
+header nav div{
+  display: flex;
+  align-items: center;
+}
+
+header nav img{
+  height: 1.33rem;
+  margin: 1rem;
+}
+
+#cuenta-carrito{
+  position: absolute;
+  background-color: #2cb671;
+  border-radius: 100%;
+  display: inline-block;
+  height: 1.66rem;
+  line-height: 1.66rem;
+  aspect-ratio: 1;
+  text-align: center;
+  margin: 1rem;
+  box-shadow: 0 0 2.33rem #a2ff00;
+}
+
+footer{
+  text-align: center;
+  border-top: solid 0.1rem rgb(0, 255, 115);
+  padding-top: .33rem;
+  margin-top: auto;
+}
+
+footer a{
+  text-decoration: underline;
+}
