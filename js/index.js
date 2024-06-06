@@ -1,6 +1,6 @@
 const contenedorTarjetas = document.getElementById("productos-container");
 
-/** Crea las tarjetas de productos teniendo en cuenta la lista en mercaderias.js */
+/** Crea las tarjetas de productos teniendo en cuenta la lista en data.json */
 function crearTarjetaProducto(producto) {
   const nuevaMercaderia = document.createElement("div");
   nuevaMercaderia.classList.add("tarjeta-producto");
@@ -21,9 +21,15 @@ function agregarTarjetasAlContenedor(tarjetas) {
   contenedorTarjetas.appendChild(fragmento);
 }
 
-function crearTarjetasProductosInicio(productos) {
+async function crearTarjetasProductosInicio() {
+  // Fetch product data from "data.json"
+  const response = await fetch("./json/data.json");
+  const productos = await response.json();
+
+  // Create and append product cards
   const tarjetas = productos.map(crearTarjetaProducto);
   agregarTarjetasAlContenedor(tarjetas);
 }
 
-crearTarjetasProductosInicio(mercaderias);
+// Call the function to create and display product cards
+crearTarjetasProductosInicio();
