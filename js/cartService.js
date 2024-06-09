@@ -1,11 +1,11 @@
 const cuentaCarritoElement = document.getElementById("cuenta-carrito");
 
-/** Toma un objeto producto o un objeto con al menos un ID y lo agrega al carrito */
+// Toma un objeto producto o un objeto con al menos un ID y lo agrega al carrito //
 function agregarAlCarrito(producto){
-  //Reviso si el producto está en el carrito.
+  // Reviso si el producto está en el carrito //
   let memoria = JSON.parse(localStorage.getItem("mercaderias"));
   let cantidadProductoFinal;
-  //Si no hay localstorage lo creo
+  // Si no hay localstorage lo creo //
   if(!memoria || memoria.length === 0) {
     const nuevoProducto = getNuevoProductoParaMemoria(producto)
     localStorage.setItem("mercaderias",JSON.stringify([nuevoProducto]));
@@ -13,16 +13,16 @@ function agregarAlCarrito(producto){
     cantidadProductoFinal = 1;
   }
   else {
-    //Si hay localstorage me fijo si el artículo ya está ahí
+    // Si hay localstorage me fijo si el artículo ya está ahí /
     const indiceProducto = memoria.findIndex(mercaderia => mercaderia.id === producto.id)
     const nuevaMemoria = memoria;
-    //Si el producto no está en el carrito lo agrego
+    // Si el producto no está en el carrito lo agrego /
     if(indiceProducto === -1){
       const nuevoProducto = getNuevoProductoParaMemoria(producto);
       nuevaMemoria.push(nuevoProducto);
       cantidadProductoFinal = 1;
     } else {
-      //Si el producto está en el carrito le agrego 1 a la cantidad.
+      // Si el producto está en el carrito le agrego 1 a la cantidad /
       nuevaMemoria[indiceProducto].cantidad ++;
       cantidadProductoFinal = nuevaMemoria[indiceProducto].cantidad;
     }
@@ -32,7 +32,7 @@ function agregarAlCarrito(producto){
   }
 }
 
-/** Resta una unidad de un producto del carrito */
+// Resta una unidad de un producto del carrito //
 function restarAlCarrito(producto){
   let memoria = JSON.parse(localStorage.getItem("mercaderias"));
   let cantidadProductoFinal = 0;
@@ -48,14 +48,14 @@ function restarAlCarrito(producto){
   return cantidadProductoFinal;
 }
 
-/** Agrega cantidad a un objeto producto */
+// Agrega cantidad a un objeto producto //
 function getNuevoProductoParaMemoria(producto){
   const nuevoProducto = producto;
   nuevoProducto.cantidad = 1;
   return nuevoProducto;
 }
 
-/** Actualiza el número del carrito del header */
+// Actualiza el número del carrito del header //
 function actualizarNumeroCarrito(){
   let cuenta = 0;
   const memoria = JSON.parse(localStorage.getItem("mercaderias"));
@@ -66,7 +66,7 @@ function actualizarNumeroCarrito(){
   cuentaCarritoElement.innerText = 0;
 }
 
-/** Reinicia el carrito */
+// Reinicia el carrito //
 function reiniciarCarrito(){
   localStorage.removeItem("mercaderias");
   actualizarNumeroCarrito();

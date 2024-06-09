@@ -1,3 +1,4 @@
+// Obtener datos del archivo JSON importado //
 const obtenerProductos = () => {
-    return productosData; // Obtener datos del archivo JSON importado
+    return productosData;
 };
